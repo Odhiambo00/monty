@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <ctype.h>
 
+extern char *value;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,3 +41,21 @@ typedef struct instruction_s
 } instruction_t;
 
 void exe(char *line, stack_t **stack, unsigned int line_number);
+void op_push(stack_t **stack, unsigned int line_number);
+void op_pall(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_add(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
+int _isdigit(void);
+void free_stack(stack_t *stack);
+void _get(char *line, char *opcode, stack_t **stack, unsigned int line_number);
+void err_push(char *opcode, unsigned int line_number);
+void err_pint(char *opcode, unsigned int line_number);
+void err_pop(char *opcode, unsigned int line_number);
+void err_add(char *opcode, unsigned int line_number);
+void err_swap(char *opcode, unsigned int line_number);
+void err_dir(char *opcode, unsigned int line_number);
+
+#endif /* MONTY_H */
