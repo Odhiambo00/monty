@@ -40,6 +40,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	else
 	{
 		stack_t *swap = node;
+
 		node = node->next;
 		temp = swap->data;
 		swap->data = node->data;
