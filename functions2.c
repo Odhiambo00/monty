@@ -42,9 +42,9 @@ void swap(stack_t **stack, unsigned int line_number)
 		stack_t *swap = node;
 
 		node = node->next;
-		temp = swap->n;
-		swap->n = node->n;
-		node->n = temp;
+		temp = swap->data;
+		swap->data = node->data;
+		node->data = temp;
 	}
 }
 /**
@@ -64,8 +64,8 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	sum = staackk->n + staackk->next->n;
-	staackk->next->n = sum;
+	sum = staackk->data + staackk->next->data;
+	staackk->next->data = sum;
 	pop(stack, line_number);
 }
 /**
