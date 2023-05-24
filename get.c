@@ -28,7 +28,7 @@ void _get(char *line, char *opcode, stack_t **stack, unsigned int line_number)
 
 	while (table[a].opcode)
 	{
-		if (strccmp(opcode, table[a].opcode) == 0)
+		if (strncmp(opcode, table[a].opcode) == 0)
 		{
 			table[a].f(stack, line_number);
 			return;
