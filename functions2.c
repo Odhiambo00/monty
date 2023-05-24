@@ -42,9 +42,9 @@ void swap(stack_t **stack, unsigned int line_number)
 		stack_t *swap = node;
 
 		node = node->next;
-		temp = swap->data;
-		swap->data = node->data;
-		node->data = temp;
+		temp = swap->n;
+		swap->n = node->n;
+		node->n = temp;
 	}
 }
 /**
@@ -57,15 +57,15 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *staackk = *stack;
 	int sum = 0;
 
-	if (!staackk || !staackk->.next)
+	if (!staackk || !staackk->next)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 
-	sum = staackk->data + staackk->next->data;
-	staackk->next->data = sum;
+	sum = staackk->n + staackk->next->n;
+	staackk->next->n = sum;
 	pop(stack, line_number);
 }
 /**
