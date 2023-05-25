@@ -21,8 +21,8 @@ void exe(char *line, stack_t **stack, unsigned int line_number)
 	if (opcode == NULL)
 		return;
 
-	value = strtok(NULL, " \n\t\r")
-		i = _isdigit();
+	value = strtok(NULL, " \n\t\r");
+	i = _isdigit(value);
 
 	if ((value == NULL || i == 0) && strcmp(opcode, "push") == 0)
 	{

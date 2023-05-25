@@ -36,13 +36,14 @@ void push(stack_t **stack, unsigned int line_number, char *value)
 
 void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
-	stack_t *node = *stack;
+	stack_t *tmp = *stack;
 
-	while (node != NULL)
+	while (tmp != NULL)
 	{
-		printf("%d\n", node->n);
-		node = node->next;
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
 	}
+	(void)line_number;
 }
 
 /**
@@ -53,15 +54,13 @@ void pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 
 void pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node = *stack;
-
-	if (node == NULL)
+	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", node->n);
+	printf("%d\n", (*stack)->n);
 }
 
 /**
@@ -72,7 +71,7 @@ void pint(stack_t **stack, unsigned int line_number)
 
 void err_push(char *opcode, unsigned int line_number)
 {
-	fprintf(stderr, "L%d: can't %S, stack too short\n",
+	fprintf(stderr, "L%d: can't %s, stack too short\n",
 			line_number, opcode);
 }
 
@@ -83,13 +82,12 @@ void err_push(char *opcode, unsigned int line_number)
 
 void free_stack(stack_t *stack)
 {
-	stack_t *current = stack;
+	stack_t *tmp;
 
-	while (current != NULL)
+	while (stack != NULL)
 	{
-		stack_t *next = current->next;
-
-		free(current);
-		current = next;
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
 	}
 }

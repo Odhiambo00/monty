@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  *_get - function that gets the opcode
  *@line: the line that gets executed
@@ -8,9 +9,8 @@
  */
 void _get(char *line, char *opcode, stack_t **stack, unsigned int line_number)
 {
-	int a = 0;
-	instruction_t table[] = {
-		{"push", push},
+	instruction_t instructions[] = {
+		{"push", push_wrapper},
 		{"pint", pint},
 		{"pall", pall},
 		{"add", add},
@@ -20,23 +20,17 @@ void _get(char *line, char *opcode, stack_t **stack, unsigned int line_number)
 		{NULL, NULL}
 	};
 
-	if (strcmp(opcode, "swap") == 0 && line_number == 1)
-	{
-		err_dir(opcode, line_number);
-		exit(EXIT_FAILURE);
-	}
+	int i;
 
-	while (table[a].opcode)
+	for (i = 0; instructions[i].opcode != NULL; i++)
 	{
-		if (strccmp(opcode, table[a].opcode) == 0)
+		if (strcmp(opcode, instructions[i].opcode) == 0)
 		{
-			table[a].f(stack, line_number);
+			instructions[i].f(stack, line_number);
 			return;
 		}
-		a++;
 	}
-
-	err_dir(opcode, line_number);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 	free(line);
 	free_stack(*stack);
 	exit(EXIT_FAILURE);

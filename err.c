@@ -13,8 +13,7 @@ void err_dir(char *opcode, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "Error: Unable to execute 'pint' opcode at
-			line %d\n", line_number);
+		fprintf(stderr, "Error: Unable to execute 'pint' opcode at line %d\n", line_number);
 	}
 }
 

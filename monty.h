@@ -48,7 +48,7 @@ void pop(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
-int _isdigit(void);
+int _isdigit(char *value);
 void free_stack(stack_t *stack);
 void _get(char *line, char *opcode, stack_t **stack, unsigned int line_number);
 void err_push(char *opcode, unsigned int line_number);
@@ -57,5 +57,6 @@ void err_pop(char *opcode, unsigned int line_number);
 void err_add(char *opcode, unsigned int line_number);
 void err_swap(char *opcode, unsigned int line_number);
 void err_dir(char *opcode, unsigned int line_number);
+void push_wrapper(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
